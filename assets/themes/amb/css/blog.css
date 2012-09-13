@@ -3,6 +3,12 @@
   background-color: #F1EEE9;
 }
 
+#header a.logo{
+  padding-top: 25px;
+  color: #BA7259;
+  font-size: 24px;
+}
+
 .post {
 	padding: 50px 0;
 }

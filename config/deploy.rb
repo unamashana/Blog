@@ -1,7 +1,7 @@
 # Campfire
 require 'capistrano/campfire'
 
-set :application, "sb_blog"
+set :application, "amb_blog"
 set :repository,  "_site"
 set :scm,               :none
 set :deploy_via,        :copy
@@ -18,7 +18,7 @@ set :campfire_options, :account => 'supportbee',
                        :token => '3b6227280f2699d4a85144e131bfe73ee85581ba',
                        :ssl => true
 
-role :app, "web1.supportbee.com", "web2.supportbee.com"                          # This may be the same as your `Web` server
+role :app, "aboutmybrowser.com"
 
 before 'deploy:update', 'deploy:update_jekyll'
 
@@ -28,7 +28,7 @@ after "deploy", "campfire:after_deployment"
 
 namespace(:campfire) do
   task :start_deployment do
-    campfire_room.speak "[Deployment] #{ENV['USER']} is preparing to deploy #{application} to blog.supportbee.com" 
+    campfire_room.speak "[Deployment] #{ENV['USER']} is preparing to deploy #{application} " 
   end
 
   task :after_deployment do 
