@@ -89,63 +89,39 @@
 
     <div id='footer'>
       <div class='container'>
-        <div class='row-fluid'>
+        <div class='row'>
           
-          <div class='span3 logo'>
-            <img src='https://supportbee.com/images/v3/logo.png'>
-            <p class='tagline handwrite'>
-              <span>Simple</span>
-              <a href='https://supportbee.com/'>Support Software</a>
-              <span>For Small Teams</span>
+          <div class='span6 offset3'>
+            <p class='follow'>
+              <a href="https://twitter.com/aboutmybrowser" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @AboutMyBrowser</a>
             </p>
-          </div>
-          
-          <div class='span3'>
-            <h5>Company</h5>
-            <ul>
+
+            <ul class='links'>
               <li>
-                <a href='https://supportbee.com/about'>About Us</a>
+                <a href='/?nr'>About My Browser</a>
               </li>
+              
               <li>
-                <a href='http://status.supportbee.com'>Service Status</a>
+                <a data-controls-modal='sb-overlay' href='#'>Contact Support</a>
+              </li>
+              
+              <li>
+                <a href='http://about-my-browser.totemapp.com/company'>Press</a>
+              </li>
+              
+              <li>
+                <a href='/privacy'>Privacy Policy</a>
+              </li>
+              
+              <li>
+                <a href='/terms'>Terms</a>
+              </li>
+              
+              <li>
+                <a href='https://supportbee.com'>SupportBee</a>
               </li>
             </ul>
           </div>
-
-          <div class='span3'>
-            <h5>Reach Us</h5>
-            <ul>  
-              <li>
-                <a class='email' data-controls-modal='sb-overlay' href='#'>Contact Us</a>
-              </li>
-              <li>
-                <a class='twitter' href='http://twitter.com/supportbee'>@SupportBee</a>
-              </li> 
-              <li>
-                <a href="https://twitter.com/supportbee" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @supportbee</a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-              </li>
-            </ul>
-          </div>
-
-          <div class='span3'>
-            <h5>Follow Us</h5>
-            <ul>
-              <li>
-                <a class='blog' href='{{ BASE_PATH }}'>Blog</a>
-              </li>
-              <li>
-                <a class='code' href='http://devblog.supportbee.com'>Development Blog</a>
-              </li>
-              <li>
-                <a class='github' href='https://github.com/supportbee'>Github</a>
-              </li>
-              <li>
-                <a class='angel' href='http://angel.co/supportbee'>Angel List</a>
-              </li>
-            </ul>
-          </div>
-
         </div>
       </div>
     </div>
@@ -163,7 +139,7 @@
 <script>
   //<![CDATA[
      sb_contact_form('initialize',{
-    company: 'support',
+    company: 'amb',
     height: '500px',
     position: 'none',
     locale: 'en'
