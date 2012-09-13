@@ -1,0 +1,42 @@
+---
+layout: page
+title: SupportBee Blog
+tagline: Supporting tagline
+---
+{% include JB/setup %}
+
+{% for post in paginator.posts %}
+  <div class="post">
+    <h1><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></h1>
+    <p class="meta-data">
+      {% assign author = site.authors[post.author] %}
+      <img alt="{{ author.display_name }}" class="without_border" src="{{ author.avatar }}" >
+      {{ author.display_name }} on 
+      <span class="date">{{post.date | date_to_string}}</span>
+      {% unless post.tags == empty %}
+        in
+        {% for tag in post.tags %}
+          <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref" >{{ tag }}</a>
+        {% endfor %}
+      {% endunless %}
+    </p>
+    <div class="content">
+      {{ post.content | truncatehtml: 160 }}
+      <a href="{{ BASE_PATH }}{{ post.url }}">read more &raquo;</a>
+    </div>
+  </div>
+{% endfor %}
+
+<div class="blog_pagination">
+  {% if paginator.previous_page %}
+    {% if paginator.previous_page == 1 %}
+      <a href="{{ BASE_PATH }}" class="previous more_btn">&larr; Newer Posts</a>
+    {% else %}
+      <a href="{{ BASE_PATH }}/page{{paginator.previous_page}}" class="previous more_btn">&larr; Newer Posts</a>
+    {% endif %}
+  {% endif %}
+
+  {% if paginator.next_page %}
+    <a href="{{ BASE_PATH }}/page{{paginator.next_page}}" class="next more_btn">Older Posts &rarr;</a>
+  {% endif %}
+</div>
