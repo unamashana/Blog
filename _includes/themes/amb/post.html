@@ -1,0 +1,67 @@
+<div class="page-header">
+  <div class="meta-data">
+    On {{page.date | date_to_string}} 
+    {% unless page.tags == empty %}
+      in
+      {% assign tags_list = page.tags %}
+      {% include JB/tags %}
+    {% endunless %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="span7">
+    <div class="post_title">
+      <h1>{{ page.title }}</h1>
+    </div>
+    {{ content }}
+    <div class="share_social">
+      <div class="addthis_toolbox addthis_default_style ">
+        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+        <a class="addthis_button_tweet"></a>
+        <a class="addthis_button_google_plusone"></a> 
+      </div>
+    </div>
+    <hr>
+    <div class="pagination">
+      <ul>
+      {% if page.previous %}
+        <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; Previous</a></li>
+      {% else %}
+        <li class="prev disabled"><a>&larr; Previous</a></li>
+      {% endif %}
+        <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Archive</a></li>
+      {% if page.next %}
+        <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Next &rarr;</a></li>
+      {% else %}
+        <li class="next disabled"><a>Next &rarr;</a>
+      {% endif %}
+      </ul>
+    </div>
+    <hr>
+    {% include JB/comments %}
+  </div>
+  
+  <div class="span5">
+    <div class="row">
+      {% assign author = site.authors[page.author] %}
+      <div class= "span3">
+        <div class="author_name">
+          {{ author.display_name }}
+        </div>
+        <div class="author_twitter">
+          <a href="https://twitter.com/{{ author.twitter }}" class="twitter-follow-button" data-show-count="false">Follow @{{ author.twitter }}</a>
+        </div>
+      </div>
+      <div class= "span2">
+        <img alt="{{ author.display_name }}" class="with_border" src="{{ author.avatar }}" >
+      </div>
+    </div>
+    <div class="row follow_supportbee">
+      <div class="span5">
+      </div>
+    </div>
+
+  </div>
+</div>
+
