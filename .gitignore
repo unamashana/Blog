@@ -18,7 +18,6 @@ doc/app
 *˜
 .DS_Store
 schema.rb
-.tags
 emails/*
 public/uploads/*
 public/images/twitter_auth.png
@@ -57,7 +56,6 @@ bin/
 lib/daemons/log
 log/
 .sass-cache/
-tags
 .rvmrc
 bundler_stubs/
 config/sb_config.yml
