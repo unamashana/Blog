@@ -1,3 +1,8 @@
+.navbar-inner {
+  background-image: none;
+  background-color: #F1EEE9;
+}
+
 .post {
 	padding: 50px 0;
 }
@@ -63,6 +68,8 @@ li {
 }
 
 #footer {
+  background-image: none;
+  background-color: #F1EEE9;
 	margin-top: 50px;
 }
 
