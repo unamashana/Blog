@@ -1,0 +1,21 @@
+---
+layout: post
+title: Active record and Mongrel Upload Progress Plugin
+tags:
+- mongrel
+- rubyonrails
+- technical
+- upload_progress
+status: publish
+type: post
+published: true
+meta:
+  btc_comment_counts: a:0:{}
+  btc_comment_summary: a:0:{}
+  dsq_thread_id: '154413083'
+---
+<a href="http://muziboo.com">Muziboo</a> is a pretty upload intensive website. Also there is the issue of  resampling the MP3 file so that  the flash player plays it well (Frequencies not multiple of 11025 Hz are 'chipmunked' in flash). I started looking into the mongrel_upload_progress plugin yesterday and found <a href="http://itblog.mcgeecorp.com/2007/5/15/mongrel-upload-progress-demo">this</a> demo to get me started. It works fine and I could successfully integrate it with my upload page.
+
+However there is an issue. What happens if there is an activerecord validation error. In that case the error messages have to be shown back on the upload page. This is something that I have not been able to figure out yet. The upload controller uses a <em>responds_to_parent </em>function and I don't understand it fully yet. If I do not reload the page, the page won't stop polling mongrel for upload progress. If I do reload the page, the error messages go away :(
+
+I will try to figure this out soon and will post the progress here ...

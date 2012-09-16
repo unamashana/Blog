@@ -1,0 +1,36 @@
+---
+layout: post
+title: ruby's respond_to? for checking if a method exists
+tags:
+- ruby
+- rubyonrails
+status: publish
+type: post
+published: true
+meta:
+  _edit_lock: '1224167313'
+  _edit_last: '1'
+  btc_comment_counts: a:0:{}
+  btc_comment_summary: a:0:{}
+  dsq_thread_id: '154414425'
+---
+Ruby has a function called respond_to? that can be used to seeing if a particular class or object has a method with a certain name. The syntax is something like
+
+<code>
+User.respond_to?('name')  # returns true is method name exists otherwise false
+</code>
+
+This came in very handy the other day when I wanted to send emails in muziboo to people whenever they get a reply for either their posts, or a comment on their song or other stuff. Since I am using acts_as_commentable for all commenting, I added this to comments.rb (model)
+<code>
+after_create
+if commentable.respond_to?('notify_comment')
+commentable.notify_comment()
+end
+end
+</code>
+
+<!--adsense-->
+
+Now every model, for which I wanted to send an email (when a new comment is added), i defined notify_comment() function and called UserNotifier.deliver_xxx method inside that. For models where I did not want to send an email, I never defined the function and everything worked fine because respond_to? will return a false for those models
+
+The above really helped me simplify the controller code and keep the code consistent. Thought of sharing this with everyone. Please do leave your comments if something is not quite right :)

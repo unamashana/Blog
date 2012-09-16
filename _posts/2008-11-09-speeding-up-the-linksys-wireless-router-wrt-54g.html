@@ -1,0 +1,24 @@
+---
+layout: post
+title: Speeding up the linksys Wireless Router WRT 54G
+tags:
+- bit torrent
+- dd-wrt
+- networking
+status: publish
+type: post
+published: true
+meta:
+  _edit_lock: '1228843949'
+  _edit_last: '1'
+  description: Learn how to speed up your linksys router wrt 54g when using bit torrents.
+    The solution uses the DD-WRT firmware loaded on the wrt 54G router
+  btc_comment_counts: a:0:{}
+  btc_comment_summary: a:0:{}
+  dsq_thread_id: '154415055'
+---
+We have  a BSNL Dataone connection and a linksys wireless router for internet sharing and LAN. However lately the router had been extremely slow and would hang somtimes, forcing us to reboot it every now and then. I installed the DD-WRT firmware on it but that did not help much either (although it helped in several other ways, one being using the access point as a wifi client and not an access point). Recently <a href="http://geekmokhsa.blogspot.com">Prasanna</a> told me about a problem with the router while using bit torrent which can be fixed with some settings in DD-WRT. Turns out that bit torrents open up a lot of network connections and that loads the non-enterprise routers (like WRT 54G) and hangs them up.
+
+<!--adsense-->
+
+There is a way to fix it listed on the <a href="http://www.dd-wrt.com/wiki/index.php/Router_Slowdown">DD-WRT wiki</a> and it worked in first go. The router has been behaving pretty well since then and there is a noticable difference in the network speed and responsiveness. If you are facing an issue too, do try it out.

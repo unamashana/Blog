@@ -1,0 +1,53 @@
+---
+layout: post
+title: Benefits of Test Driven Development for Startups
+tags:
+- Development
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _edit_lock: '1286780396'
+  btc_comment_summary: a:0:{}
+  btc_comment_counts: a:0:{}
+  _wp_old_slug: ''
+  btc_post: a:6:{s:2:"ID";s:3:"242";s:13:"post_date_gmt";s:19:"2010-10-11 06:54:46";s:23:"initial_import_date_gmt";s:19:"2010-10-11
+    06:56:55";s:20:"last_import_date_gmt";s:19:"0000-00-00 00:00:00";s:4:"hits";s:1:"0";s:6:"misses";s:1:"0";}
+  dsq_thread_id: '154411295'
+---
+<blockquote><strong>Test-driven development</strong> (<strong>TDD</strong>) is a <a title="Software development process" href="http://en.wikipedia.org/wiki/Software_development_process">software development process</a> that relies on the repetition of a very short development cycle: first the developer writes a failing automated <a title="Test case" href="http://en.wikipedia.org/wiki/Test_case">test case</a> that defines a desired improvement or new function, then produces code to pass that test and finally <a title="Code refactoring" href="http://en.wikipedia.org/wiki/Code_refactoring">refactors</a> the new code to acceptable standards.</blockquote>
+Enough has been said and written about <a href="http://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a> (TDD) and <a href="http://en.wikipedia.org/wiki/Behavior_Driven_Development">Behaviour Driven Development</a> (BDD). However, I still find a lot of startups (especially small startups) not investing in TDD/BDD because they think its too much extra effort that slows down their development. In fact I am guilty of thinking the same way in the past and having switched over to the the TDD/BDD camp earlier this year, I wanted to put down my thoughts on why I think the extra effort is worth its while.
+
+<strong>Test coverage helps you iterate faster</strong>
+
+As any wise person would tell you, startups are all about execution. Your ability to execute on your ideas and iterate based on the feedback you get from your customers determines the success of your startup. Having a good test coverage gives you the confidence to change things in your codebase and not worry about breaking something unintentionally. I would even argue that if you don't have test coverage, as your code base grows, you may come to a point where you may not want to make changes for the fear of breaking something.
+
+Also writing tests (or behavior) first helps you in writing more modular and hence reusable code. Its easier to refactor or to add functionality to it. You should not consider tests simply as tests. You should think of them as specifications that help you drive your development. In fact thats what BDD is all about.
+
+<strong>Manual Testing is not fun</strong>
+
+One big reason I started looking at TDD was because I had gotten really bored of testing things manually. To give you an example, everytime I modified the payment logic for <a href="http://www.muziboo.com">Muziboo</a>, I would setup the paypal sandbox and test all the steps manually. If something failed, I would repeat the entire process. I found the entire thing very demotivating and also error prone. Automated testing frees you up and lets you focus on more exciting things.
+
+<strong>Specs for your non Tech Founder</strong>
+
+Tools such as <a href="http://cukes.info/">cucumber</a> help you specify what you are trying to achieve/test in plain english. They execute plain-text functional descriptions as automated tests. Here is an example:
+<blockquote>
+<pre lang="cucumber">Feature: Search courses
+  In order to ensure better utilization of courses
+  Potential students should be able to search for courses
+
+  Scenario: Search by topic
+    Given there are 240 courses which do not have the topic "biology"
+    And there are 2 courses A001, B205 that each have "biology" as one of the topics
+    When I search for "biology"
+    Then I should see the following courses:
+      | Course code |
+      | A001        |
+      | B205        |</pre>
+</blockquote>
+These feature files can help even your non tech founder understand whats going on and what exactly the system does. Also, six months down the line, even you are gonna find it useful :)
+
+<strong>Testing is Easy</strong>
+
+The final point I want to make is that TDD/BDD is actually very easy and fun given the resources available. Right from <a href="http://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530">awesome</a> <a href="http://www.pragprog.com/titles/achbd/the-rspec-book">books</a> to great <a href="http://rspec.info/">tools</a>, there are tons of resources to help you get started. There is a learning curve but once you are used to it, things can be very fast and productive. So do yourself a favor and adopt BDD

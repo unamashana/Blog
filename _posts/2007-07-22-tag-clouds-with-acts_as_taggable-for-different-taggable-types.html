@@ -1,0 +1,58 @@
+---
+layout: post
+title: Tag clouds with acts_as_taggable for different Taggable Types
+tags:
+- acts_as_taggable
+- rubyonrails
+- technical
+status: publish
+type: post
+published: true
+meta:
+  _edit_lock: '1224167101'
+  _edit_last: '1'
+  btc_comment_summary: a:0:{}
+  btc_comment_counts: a:0:{}
+  dsq_thread_id: '154413077'
+---
+So you are building a cool new web 2.0 startup and want to have the cool tagging feature. If you are using ruby on rails, you can use <a href="http://wiki.rubyonrails.com/rails/pages/ActsAsTaggablePluginHowto">Acts_As_Taggable Plugin</a> . There is a neat way to build a tag cloud explained <a href="http://www.juixe.com/techknow/index.php/2006/07/15/acts-as-taggable-tag-cloud/">here.</a>
+
+<!--adsense-->
+
+Now acts_as_taggable uses a field called taggable_type to know what object this tag is applied to. For example, you can have tags for videos, audio blah blah blah. Now you want to build a different tag cloud for each of these categories. The steps mentioned on the site do not support this. However a small modification in the SQL query used in file lib/tag.rb in the function self.tags(option={}) can achieve this. The original query is like this
+
+<code>
+def self.tags(options = {})
+query = "select tags.id, name, count(*) as count"
+query &lt;&lt; " from taggings, tags"
+query &lt;&lt; " where tags.id = tag_id"
+query &lt;&lt; " group by tag_id"
+query &lt;&lt; " order by #{options[:order]}" if options[:order] != nil
+query &lt;&lt; " limit #{options[:limit]}" if options[:limit] != nil
+tags = Tag.find_by_sql(query)
+end
+</code>
+
+Change this to
+
+<code>
+query = "select tags.id, name, count(*) as count"
+query &lt;&lt; " from taggings, tags"
+query &lt;&lt; " where tags.id = tag_id and taggable_type = "+"'"+options[:type]+"' "
+query &lt;&lt; " group by tag_id"
+query &lt;&lt; " order by #{options[:order]}" if options[:order] != nil
+query &lt;&lt; " limit #{options[:limit]}" if options[:limit] != nil
+tags = Tag.find_by_sql(query)
+</code>
+
+This adds the select based on taggable_type to the query and you can pass it as an option in the options hash. Now to build a tag cloud for audio model instead of the function call
+
+<code>@tags = Tag.tags(:limit =&gt; 100, :order =&gt; "name desc")</code>
+
+write
+
+<code>@tags = Tag.tags(:limit =&gt; 100, :order =&gt; "name desc",:type='Audio')</code>
+
+This will pull out tags only for audio and you can use this to build a tags cloud as exaplained in the post above
+
+This is a small but useful modification. Do let me know if it can be further improved :)

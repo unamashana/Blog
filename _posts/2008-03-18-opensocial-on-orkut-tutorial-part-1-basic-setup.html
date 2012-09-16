@@ -1,0 +1,51 @@
+---
+layout: post
+title: OpenSocial on Orkut Tutorial - Part 1 (Basic Setup)
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _edit_lock: '1224167581'
+  btc_comment_counts: a:0:{}
+  btc_comment_summary: a:0:{}
+  dsq_thread_id: '155442135'
+---
+<span style="font-style: italic;">May I request you to checkout the radio on the sidebar while you read this article. Its powered by my startup </span><a style="font-style: italic;" href="http://muziboo.com">Muziboo.com</a><span style="font-style: italic;">. Some amazing music by independent musicians. Am sure you would love the music while reading this long post.</span>
+
+So you want to leverage the social graph :)
+
+I will be finally writing (atleast a basic) Muziboo app on opensocial over the next week or so. I thought of actually documenting the whole process here. I find very little tutorials or documentation other than the official one at <a href="http://code.google.com/apis/opensocial/">google code</a>. Hopefully if I come up with a working app, other people can read this and may be it will help some poor souls. I am assuming I am finding opensocial complicated because I am not a javascript or web architecture guru. I certainly find it more complicated than the facebook api. Anyway lets see how to get started with development here. Lot of what I write may be ruby on rails specifc (atleast in the later posts)
+
+<!--adsense-->
+
+<span style="font-weight: bold;">Resources
+</span>Ok so lets talk of the resource you need to checkout before you dive into making an opensocial app for orkut. Remember that as of today (March 18th) the orkut container runs opensocial 0.7 so don't waste your time trying to run examples built on older versions of opensocial.
+
+<a href="http://sandbox.orkut.com">Orkut Sandbox</a>: To test the app .. ofcourse
+<a href="http://code.google.com/apis/opensocial/docs/0.7/devguide.html">Developer Guide:</a>&nbsp; You will find many more links here to reference, specs etc.
+<a href="http://sandbox.orkut.com/AppInfo.aspx?appId=1046269871732">Code Runner</a> (lets you make javascript calls without modifying your source xml file. Great for debugging)
+<a href="http://opensocialapis.blogspot.com/"><span style="font-weight: bold;"></span>OpenSocial Official Blog</a> : To make sure you know whats coming up. When is the api changing and other critical stuff
+<a href="http://groups.google.com/group/opensocial-api/">Opensocial Forums</a> : Opensocial and other container (such as orkut, ning) container
+
+<span style="font-weight: bold;">Setting up a proxy
+</span>You will be most likely developing on your local machine. However opensocial needs to access a public url to fetch the gadget xml file. You can find lots of hosting options <a href="http://code.google.com/apis/opensocial/container.html">here</a>. However if you don't want to checkin and checkout your code everytime you make a change, you need to run a ssh tunnel to let orkut access your local machine and a webserver running on some port there. The process is explained in detail for facebook <a href="http://kweiner.blogspot.com/2007/09/reverse-ssh-tunnel-for-facebook.html">here</a> but the basics remain the same. The command that finally works for me is
+
+$ ssh -nNT -g -R *:REMOTE_PORT:0.0.0.0:LOCAL_PORT REMOTE_USER@REMOTE_SERVER.COM
+
+<span style="font-weight: bold;">Bypassing the orkut cache
+</span>Orkut caches your gadget file and refreshes it probably every hour or so but since you are coding away so fast :) you need to make sure your changes are immediately reflected. No problem just append &amp;bpc=1 at the end of the canvas url. This will make sure the cache is bypassed.
+
+<span style="font-weight: bold;">Basic app to check the whole setup</span>
+Once you have read so far, try a basic app by following the <a href="http://code.google.com/apis/opensocial/articles/tutorial/tutorial-0.7.html">tutorial</a>
+
+Hopefully everything will work fine and you will see a greeting. The gold old hello world!
+
+<!--adsense-->
+
+See ya around! The next topic will cover some basic integration stuff with your existing website (if I am able to figure it out till then)&nbsp;&nbsp;  
+
+
+<span style="font-weight: bold;"></span><span style="font-style: italic;">
+</span><span style="font-weight: bold;"></span>   <div class="flockcredit" style="text-align: right; color: #CCC; font-size: x-small;">Blogged with the <a href="http://www.flock.com/blogged-with-flock" style="color: #999; font-weight: bold;" target="_new" title="Flock Browser">Flock Browser</a></div><!-- technorati tags begin --><p style="font-size:10px;text-align:right;">Tags: <a href="http://technorati.com/tag/opensocial" rel="tag">opensocial</a>, <a href="http://technorati.com/tag/rubyonrails" rel="tag">rubyonrails</a>, <a href="http://technorati.com/tag/%20tutorial" rel="tag"> tutorial</a>, <a href="http://technorati.com/tag/%20orkut%20sandbox" rel="tag"> orkut sandbox</a></p><!-- technorati tags end -->

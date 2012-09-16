@@ -1,0 +1,20 @@
+---
+layout: post
+title: counter_cache gotcha in activerecord!
+tags:
+- activerecord
+- counter_cache
+- rubyonrails
+status: publish
+type: post
+published: true
+meta:
+  btc_comment_counts: a:0:{}
+  btc_comment_summary: a:0:{}
+  dsq_thread_id: '154413107'
+---
+If you are using counter_cache, you must watch out for this one. I am not sure if this has been fixed in the recent version, but the version that I am using (1.15.3) has the issue
+
+If you are using counter_cache (such as in acts_as_commentable as described <a href="http://www.hervalfreire.com/blog/2007/05/13/caching-comments-with-acts_as_commentable/">here</a>), you must make sure that after updating the counter (in after_create call in this case), you must not save your commentable object (in this case @song) without reloading it, otherwise the counter will be reset back to the value before the increment.
+
+Took me a while to figure this out and I googled after that and found that other people have faced this issue too. You can read more about the error <a href="http://dev.rubyonrails.org/ticket/5050">here</a>

@@ -1,0 +1,54 @@
+---
+layout: post
+title: Why shared hosting is bad for your startup
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_lock: '1224127473'
+  _edit_last: '1'
+  keywords: shared hosting, vps, comparison, shared hosting sucks
+  description: Learn why its never a good idea to use shared hosting for your startup.
+    Know why a VPS is almost always a better choice.
+  btc_comment_counts: a:0:{}
+  btc_comment_summary: a:0:{}
+  dsq_thread_id: '154414711'
+---
+One of the first lessons I learnt was that $10 hosting is so cool is very misleading. If you do a quick google search for <a href="http://www.google.co.in/search?q=cheap+hosting&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=FlockInc.:en-US:official&amp;client=firefox">cheap hosting</a> will throw up lots of sponsored and unsponsored results. Providers would offer you 100s of GBs of space and terrabytes of data transfer and you would do a real quick calculation and figure out that you can support thousands of users on that. You can't be more wrong and nothing would cause you more pain than realizing it when you site is live and serving some real traffic.
+<h2><span style="font-size: medium;">Why is shared hosting so bad</span></h2>
+Now let me write some of the reasons why shared hosting is a bad idea. Please feel free to add more reasons or debate the ones listed here.
+<strong><span style="font-weight: bold">No performance guarentees</span></strong>
+Shared hosting is bad because you simply have no performance guarantees. I am not talking of the 99.99% uptime SLAs here because they are mostly useless anyway. The maximum they would do for you if things go wrong is to refund you a few dollars (thats if you can really win with them). How does that sound for an hour of outage everynow and then leaving your users hanging? One of the most common reasons for your site going down on a shared host is someone else hogging all the resources on the system. This could happen everytime anybody has a traffic surge on the system or there is a mysql restoration going on for another account or probably any other CPU/disk IO intensive stuff.
+<strong><span style="font-weight: bold">Think of CPU and RAM</span></strong>
+<span style="font-weight: bold"> </span>Probably even more important than getting a lot of hard disk space and bandwidth is to get a decent share of CPU and memory. You will not need the 250GB space offered to you anytime soon but you are going to need a lot of CPU cycles as your traffic goes up. You will need more and more RAM if you are hosting using frameworks like <a href="http://rubyonrails.org">ruby on rails</a>.
+<strong><span style="font-weight: bold">No long running processes</span></strong>
+<span style="font-weight: bold"> </span>This is something most newbies have no idea about. Long running processes are used for doing stuff in the background. This could be something like zipping a file in the background after an upload or clearing out old sessions from database every 30 mins or something like that. Mostly they are run using <a href="http://en.wikipedia.org/wiki/Cron">cron</a> and will be needed for almost any big site. Most shared hosts don't allow this as such processes eat a lot of CPU cycles and RAM. You may not need this as soon as you start your site but you will need them sooner than you think (especially if you are using ruby on rails as it blocks on long requests and you almost always want to move them to the background).
+<strong><span style="font-weight: bold">Limit on Emails</span></strong>
+<span style="font-weight: bold"> </span>Most of the shared hosts have a limit on the number of emails that you can send per hour. So if you have an application that needs to send out lots of emails, make sure you check this with your host. I am talking only of outbound email. For incoming emails, you should try using something like google apps. You can read more about google apps and other helpful webservices <a href="http://prateekdayal.net/blog/2008/04/15/how-to-outsource-on-small-budget/">here</a>
+<strong><span style="font-weight: bold"> </span><span style="font-size: medium;">How do I know if its the system load when my site is slow</span></strong>
+If you are on a linux hosting (which you should be), try using the commands <span style="font-style: italic">vmstat</span> (for disk IO usage) and <span style="font-style: italic">uptime </span>(for CPU usage). This should give you a good idea of whats going wrong. You can also try talking to your service provider but I doubt if it would be helpful.
+<strong><span style="font-size: medium;">What the solution then</span></strong>
+The solution most often is to use a <a href="http://en.wikipedia.org/wiki/Virtual_private_server">Virtual Private Server</a> (VPS). A dedicated box may be too expensive (specially when you want something with a <a href="http://en.wikipedia.org/wiki/RAID">RAID</a> etc) and you may not need it anytime soon. A VPS offers a good tradeoff between performance and price. A VPS is like a dedicated box but in reality its one system partitioned into many systems. Partitioning include memory, RAM etc so you know there is no overloading there. You always get the resources promised to you. Several features of a VPS are
+<ul>
+	<li>A guaranteed performance (even in terms of CPU. Only exception is Disk IO, but blocking there is not very common)</li>
+	<li>You know how much RAM you need</li>
+	<li>No limits on sending emails etc. Its like your dedicated box and you decide how you wanna use it</li>
+	<li>You can run long running processes or whatever you want on it if you have taken one with enough RAM</li>
+</ul>
+<strong><span style="font-size: medium;">Whats good about shared hosting</span></strong>
+Before I get flamed for talking only bad things about shared hosting, let me talk about whats good. Here are some reasons why you would wanna start out with <a href="http://www.webhostingsearch.com/shared-web-hosting.php">shared hosting</a> and then get onto a <a href="http://en.wikipedia.org/wiki/Virtual_private_server">VPS</a> before public launch (yes, even beta)
+<ul>
+	<li>Very easy to get started as no system administration skills required</li>
+	<li>You can learn a lot when things don't work :)</li>
+	<li>You can focus on building the app and let someone else worry about hosting it initially</li>
+	<li>You can use it for backups etc as they give you a lot of disk space and bandwidth</li>
+	<li>You can use it to host your blogs etc (<a href="http://prateekdayal.net/blog/2008/04/15/how-to-outsource-on-small-budget/">why?</a>)</li>
+</ul>
+But make sure that you don't lock yourself into a one year plan or something while trying out shared hosting
+
+So I hope this post helps you decide what kind of hosting is good for you, specially if you are new to this whole web business like I was about one year back. Please do comment and if you like this post, subscribe to my RSS feeds. I mostly write about stuff relevant to bootstrappers.
+<p class="flockcredit" style="text-align: right; color: #cccccc; font-size: x-small">Blogged with the <a style="color: #999999; font-weight: bold" title="Flock Browser" href="http://www.flock.com/blogged-with-flock" target="_new">Flock Browser</a></p>
+<!-- technorati tags begin -->
+<p style="font-size: 10px; text-align: right">Tags: <a rel="tag" href="http://technorati.com/tag/dedicatedhosting">dedicatedhosting</a>, <a rel="tag" href="http://technorati.com/tag/%20shared%20hosting"> shared hosting</a>, <a rel="tag" href="http://technorati.com/tag/%20virtual%20private%20server"> virtual private server</a>, <a rel="tag" href="http://technorati.com/tag/%20vps"> vps</a>, <a rel="tag" href="http://technorati.com/tag/%20hosting%20comparison"> hosting comparison</a>, <a rel="tag" href="http://technorati.com/tag/%20shared%20hosting%20sucks"> shared hosting sucks</a></p>
+<!-- technorati tags end -->

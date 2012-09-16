@@ -1,0 +1,80 @@
+---
+layout: post
+title: Rubyworks on Debian Etch
+tags:
+- debian
+- error
+- etch
+- muziboo
+- rmagick
+- ruby
+- rubyonrails
+- rubyworks
+status: publish
+type: post
+published: true
+meta:
+  _edit_lock: '1224167226'
+  _edit_last: '1'
+  btc_comment_counts: a:0:{}
+  btc_comment_summary: a:0:{}
+  dsq_thread_id: '154414421'
+---
+I recently got a new VPS account and it runs 64 bit Debain Etch (4.0). I installed rubyworks on it and the installation went pretty smooth. After that, I tried to move muziboo.com files to this server and a lot of error started happening in trying to get the app up.
+
+First one was
+
+<code>
+muziboo@debian:~/muziboo/muz$ rake db:migrate
+(in /home/muziboo/muziboo/muz)
+rake aborted!
+no such file to load -- hpricot
+</code>
+
+When I tried to install hpricot and that resulted in the following
+
+<code>
+muziboo@debian:~/muziboo/muz$ gem install hpricot
+ERROR:  While executing gem ... (RuntimeError)
+Unsupported architecture: x86_64
+</code>
+
+To get rid of this error, I downloaded the latest rubygems package from rubyforge and the gem command started working fine. However I ran into this error now
+
+<code>
+debian:~/Softwares/rubygems-0.9.4# gem install hpricot --source http://code.whytheluckystiff.net
+Bulk updating Gem source index for: http://code.whytheluckystiff.net
+Select which gem to install for your platform (x86_64-linux)
+1. hpricot 0.6 (mswin32)
+2. hpricot 0.6 (jruby)
+3. hpricot 0.6 (ruby)
+4. hpricot 0.6 (jruby)
+5. hpricot 0.6 (mswin32)
+6. hpricot 0.6 (ruby)
+7. Skip this gem
+8. Cancel installation
+&gt; 3
+Building native extensions.  This could take a while...
+ERROR:  While executing gem ... (Gem::Installer::ExtensionBuildError)
+ERROR: Failed to build gem native extension.
+
+ruby extconf.rb install hpricot --source http://code.whytheluckystiff.net
+extconf.rb:1:in `require': no such file to load -- mkmf (LoadError)
+from extconf.rb:1
+
+Gem files will remain installed in /usr/lib/ruby/gems/1.8/gems/hpricot-0.6 for inspection.
+Results logged to /usr/lib/ruby/gems/1.8/gems/hpricot-0.6/ext/hpricot_scan/gem_make.out
+
+</code>
+
+I googled around a bit and then followed <a href="http://spew.whalespine.org/tech/linux/debian/mkmfrb-on-debian/">this</a> post and the error disappeared but I started getting a new error about gcc missing on the system (during native extensions building stage). I installed that with apt-get install gcc-* (doing just apt-get install gcc resulted in header files missing error message).   This time the native extensions were built properly and the gem was installed.
+
+<!--adsense-->
+
+The next problem came with rmagick. I installed imagemagick and libmagick9-dev (to avoid getting a missing Magick-config error).
+
+Once everything was working, I could run the app using mongrel_rails start but I could still not get it up in the rubyworks framework. I would always get a 500 error. I had symlinked /usr/rails to my app's directory.
+
+After lots of tests and experiments, I found out that rubyworks runs the processes as user rails and therefore your app's directory should be writeable by user rails. I don't know what is a good way to do that but I tried to make rails the owner of the app's directory, the application started running all fine.
+
+So these are some of the steps where i faced some problems and thought of writing about it. I hope someone will save some time because of this. If you do, please let me know :)

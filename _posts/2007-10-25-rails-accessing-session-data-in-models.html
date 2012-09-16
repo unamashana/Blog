@@ -1,0 +1,24 @@
+---
+layout: post
+title: ! 'Rails : Accessing session data in models'
+tags:
+- activerecord
+- cache_sweeper
+- rubyonrails
+status: publish
+type: post
+published: true
+meta:
+  _edit_lock: '1224167359'
+  _edit_last: '1'
+  btc_comment_counts: a:0:{}
+  btc_comment_summary: a:0:{}
+  dsq_thread_id: '155265560'
+---
+MVC architecture is good for keeping your design neat but once in a while you hit a road block and this is one such situtation.  If you want to log actions/events in your code and track changes to models, you would want to do that in the activerecord callback hooks like after_save and before_destroy. However these methods have only access to the record that is  affected and not to the session data. Therefore, you cannot log 'who' made the change.
+
+After some googling around and wasting an hour or so, I found out that the trick is to use cache_sweeper class, which keeps a track of the objects that you ask it to for regenerating caches. You can however use it to keep a track of your changes and log it. Cache Sweeper objects also have access to the session data so you can know 'who' made changes to your model.
+
+<!--adsense-->
+
+The process is described further in Rails Recipes book and is quite interesting ... go read on :)

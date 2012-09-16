@@ -1,0 +1,21 @@
+---
+layout: post
+title: Move to Rails 2.0.2
+tags:
+- counter_cache
+- rubyonrails
+status: publish
+type: post
+published: true
+meta:
+  btc_comment_counts: a:0:{}
+  btc_comment_summary: a:0:{}
+  dsq_thread_id: '154414677'
+---
+I finally moved <a href="http://muziboo.com">Muziboo</a> to rails 2.0.2 this weekend. The move went pretty smooth. The only gotcha for me was that counters used with conter_cache  are marked as readonly in rails 2.0.2 so you cannot use update_attributes to update them (in a migration or otherwise)
+
+The trick is to use Class.update_counters class method ...
+
+Other than that most of the things you need to know are well documented on the web .. this one took me almost a day to figure out so I am mentioning it on the blog
+
+The move to rails 2.0.2 was motivated by the fact that I see all the new plugins and blog posts talking about rails 2 and so I did not want to miss out on all the new action and possibly other security updates  etc

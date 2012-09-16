@@ -1,0 +1,28 @@
+---
+layout: post
+title: Ruby issues and backgroundrb
+tags:
+- backgroundrb
+- ruby
+- rubyonrails
+status: publish
+type: post
+published: true
+meta:
+  btc_comment_summary: a:0:{}
+  btc_comment_counts: a:0:{}
+  dsq_thread_id: '154413100'
+---
+Well on a fine saturday morning, i set a breakpoint in my code so that I can read the values of params being passed on a form submit (i wanted to try checkbox arrays) and I get an error saying breakpoints not supported in ruby-1.8.5.  I had installed ruby sometime back on my ubuntu fiesty fawn and i decided to upgrade it to 1.8.6 because that is what i am using in windows (instant rails). I grab a new package from ruby-lang.org and install it (source package).
+
+Trouble begins ... nothing works fine. There is no rails !!!. I grab rubygems, install that and install rails and other gems that i need. Now i open script/console and it says
+
+<code>
+/usr/local/lib/ruby/1.8/irb/completion.rb:10:in `require': no such file to load -- readline (LoadError)
+</code>
+
+After a lot of effort and searching on the web, I found instructions <a href="https://rubyforge.org/forum/forum.php?thread_id=14854&amp;forum_id=9502">here</a> that fix it. Steps 27-33 if you wanna skip everything else.
+
+Now to backgroundrb: It is so damn tough to figure out where to install backgroundrb from. I think I had installed it from rubyforge or someplace and turns out if was an older version. I finally grabbed the latest version from trunk from <a href="http://svn.devjavu.com/backgroundrb/trunk/">here</a> and looks like it is. I could create an example worker and call it from my application controller and pass some data back from worker to the application using the <em>results</em> hash.
+
+I find the backgroundrb documentation <a href="http://backgroundrb.rubyforge.org/">here</a>  to be quite useful. Next I will try to do some MP3 encoding stuff using backgroundrb

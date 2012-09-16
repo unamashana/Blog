@@ -83,6 +83,32 @@ li {
   background-image: none;
   background-color: #F1EEE9;
 	margin-top: 50px;
+  padding-bottom: 0;
+  text-align: center;
+}
+
+#footer a {
+  color: #08C;
+}
+
+#footer ul {
+  margin-top: 30px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  display: inline-block;
+}
+
+#footer ul li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0;
+  white-space: nowrap;
+  display: inline;
+  float: left;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 .author_name, .author_twitter {
